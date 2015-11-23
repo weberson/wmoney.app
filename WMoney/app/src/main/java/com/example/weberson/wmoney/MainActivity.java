@@ -1,6 +1,7 @@
 package com.example.weberson.wmoney;
 
 import android.os.AsyncTask;
+import android.provider.SyncStateContract;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -48,24 +49,24 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void login(View view){
-        EditText email = (EditText) findViewById(R.id.email);
-        EditText password = (EditText) findViewById(R.id.password);
-        EditText result = (EditText) findViewById(R.id.result);
+//        EditText email = (EditText) findViewById(R.id.email);
+//        EditText password = (EditText) findViewById(R.id.password);
+//        EditText result = (EditText) findViewById(R.id.result);
 
-        if (checkLogin(email.getText().toString(), password.getText().toString(), result)){
-            result.setText("Acesso permitido!");
-        }
-        else
-        {
-            result.setText("Acesso negado!");
-        }
+//        if (checkLogin(email.getText().toString(), password.getText().toString())){
+//            result.setText("Acesso permitido!");
+//        }
+//        else
+//        {
+//            result.setText("Acesso negado!");
+//        }
     }
 
-    public boolean checkLogin(String email, String password, EditText showResult){
+    public boolean checkLogin(String email, String password){
         boolean result = false;
 
         try{
-            result = new WMoneyClient().execute(email, password).get();
+            result = new WMoneyClient(this).execute(email, password).get();
         }
         catch (Exception e) {
             // writing exception to log
